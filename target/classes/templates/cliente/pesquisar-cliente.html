@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:data="http://www.thymeleaf.org/extras/data">
+<head>
+<meta charset="UTF-8">
+<title>Cadastrar cliente</title>
+<link rel="stylesheet" th:href="@{/css/style.css}"></link>
+</head>
+<body>
+
+	<div th:if="${not #strings.isEmpty(mensagem)}">
+		<span class="msg-sucesso" th:text="${mensagem}"></span>
+	</div>
+	
+	<form method="get" th:object="${clienteFilter}">
+		
+		<fieldset>
+			<legend>Pesquisar cliente</legend>
+			<div class="container">
+				<div>
+					<label for="nome">Nome:</label>
+					<input id="nome" type="text" th:field="*{nome}">
+				</div>
+				
+				<div class="espaco">
+					<label for="sexo">Sexo:</label>
+					<select id="sexo" th:field="*{sexo}">
+						<option value="">Todos</option>
+						<option th:each="sexo : ${sexos}" th:value="${sexo}" th:text="${sexo.descricao}"></option>
+					</select>
+				</div>
+			</div>
+			
+			<br><br>
+			
+			<input type="submit" value="Pesquisar">
+			<a th:href="@{/clientes/novo}" class="espaco">Cadastrar</a>
+			
+			<br><br>
+			
+			<table border="1">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Nome</th>
+						<th>Idade</th>
+						<th>Sexo</th>
+						<th>Ações</th>
+					</tr>
+				</thead>
+				
+				<tbody>
+					<tr th:each="cliente : ${clientes}">
+						<td th:text="${cliente.id}"></td>
+						<td th:text="${cliente.nome}"></td>
+						<td th:text="${cliente.idade}"></td>
+						<td th:text="${cliente.sexo.descricao}"></td>
+						<td>
+							<a th:href="@{/clientes/{id}(id=${cliente.id})}">Editar</a>
+							<a href="#" class="btn-excluir"
+								data:nome="${cliente.nome}"
+								data:url="@{/clientes/{id}(id=${cliente.id})}">Excluir</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</fieldset>
+	</form>
+	
+	<script th:src="@{/js/Cliente.js}"></script>
+</body>
+</html>

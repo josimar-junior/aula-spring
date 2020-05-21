@@ -1,0 +1,26 @@
+fieldset {
+	border-radius: 7px;
+}
+
+.msg-erro {
+	display: block;
+	color: red;
+}
+
+.msg-sucesso {
+	color: green;
+}
+
+.required::after {
+	content: '*';
+	color: red;
+}
+
+.container {
+	display: flex;
+	flex-direction: row;
+}
+
+.espaco {
+	margin-left: 22px;
+}
