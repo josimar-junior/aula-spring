@@ -40,7 +40,7 @@
 		<spring-data-jpa.version>2.2.7.RELEASE</spring-data-jpa.version>
 		
 		<!-- MySql Connector -->
-		<mysql-connector-java.version>8.0.20</mysql-connector-java.version>
+		<mysql-connector-java.version>8.0.28</mysql-connector-java.version>
 
 	</properties>
 	
